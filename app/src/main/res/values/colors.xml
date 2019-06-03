@@ -5,4 +5,7 @@
     <color name="colorAccent">#D81B60</color>
     <color name="fondo">#F44336</color>
     <color name="hint_enter_note">#89c3c3c3</color>
+    <color name="ecologico">#B347B34C</color>
+    <color name="social">#B3FF5722</color>
+    <color name="cultural">#B3FFD700</color>
 </resources>

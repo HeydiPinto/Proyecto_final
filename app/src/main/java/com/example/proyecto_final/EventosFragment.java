@@ -25,6 +25,17 @@ import android.widget.Toast;
 public class EventosFragment extends Fragment {
 
     FloatingActionButton fab;
+    ListView lista;
+    String [][] datos={
+            {"Evento 1", "Ecologico"},
+            {"Evento 2", "Social"},
+            {"Evento 3", "Ecologico"},
+            {"Evento 4", "Ecologico"},
+            {"Evento 5", "Ecologico"},
+            {"Evento 6", "Cultural"},
+            {"Evento 7", "Cultural"},
+            {"Evento 8", "Social"}
+    };
 
     public EventosFragment() {
         // Required empty public constructor
@@ -40,6 +51,17 @@ public class EventosFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 showNoteDialog();
+            }
+        });
+
+        lista= (ListView) rootView.findViewById(R.id.listView);
+
+        lista.setAdapter(new MyAdapter(getActivity().getApplicationContext(),datos));
+
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getContext(),"Clicked: "+position, Toast.LENGTH_SHORT).show();
             }
         });
 
