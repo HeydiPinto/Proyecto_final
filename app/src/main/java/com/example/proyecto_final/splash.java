@@ -8,7 +8,7 @@ import android.os.Bundle;
 
 public class splash extends Activity {
     // Duración en milisegundos que se mostrará el splash
-    private final int DURACION_SPLASH = 3000; // 3 segundos
+    private final int DURACION_SPLASH = 4000; // 3 segundos
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
