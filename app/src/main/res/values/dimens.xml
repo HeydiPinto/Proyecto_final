@@ -6,4 +6,5 @@
     <dimen name="lbl_new_note_title">20sp</dimen>
     <dimen name="imput_new_note">16sp</dimen>
     <dimen name="activity_margin">16dp</dimen>
+
 </resources>

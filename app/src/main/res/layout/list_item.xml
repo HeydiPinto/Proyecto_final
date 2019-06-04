@@ -10,8 +10,8 @@
         android:id="@+id/fondo"
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        app:srcCompat="@color/colorPrimary"
-        android:paddingTop="0dp"/>
+        app:srcCompat="@color/social"
+        android:layout_marginTop="0dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
@@ -41,7 +41,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/nom"
+        android:text="@string/nombre"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
@@ -60,5 +60,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+
 
 </android.support.constraint.ConstraintLayout>
