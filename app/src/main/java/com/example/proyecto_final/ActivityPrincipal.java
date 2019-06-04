@@ -26,7 +26,7 @@ public class ActivityPrincipal extends AppCompatActivity {
                     fragment = new EventosFragment();
                     loadFragment(fragment);
                     return true;
-                    //KK
+
                 case R.id.info:
                     toolbar.setTitle("Informacion");
                     fragment = new InfoFragment();
