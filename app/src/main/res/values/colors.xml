@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#066da7</color>
-    <color name="colorPrimaryDark">#004278</color>
-    <color name="colorAccent">#ffb834</color>
-
-    <color name="fondo">#6ECFCC</color>
-    <color name="hint_enter_note"></color>
-    <color name="social"></color>
-    <color name="ecologico"></color>
-    <color name="cultural"></color>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="fondo">#F44336</color>
+    <color name="hint_enter_note">#89c3c3c3</color>
+    <color name="ecologico">#B347B34C</color>
+    <color name="social">#B3FF5722</color>
+    <color name="cultural">#B3FFD700</color>
 </resources>
