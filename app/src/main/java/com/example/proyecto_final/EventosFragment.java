@@ -13,8 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +38,8 @@ public class EventosFragment extends Fragment {
             {"Evento 7", "Cultural"},
             {"Evento 8", "Social"}
     };
+    String[] opciones = {"Ecológico","Social","Cultural","Deportivo"};
+    String cat;
 
     public EventosFragment() {
         // Required empty public constructor
@@ -55,9 +59,7 @@ public class EventosFragment extends Fragment {
         });
 
         lista= (ListView) rootView.findViewById(R.id.listView);
-
         lista.setAdapter(new MyAdapter(getActivity().getApplicationContext(),datos));
-
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -77,11 +79,15 @@ public class EventosFragment extends Fragment {
 
         final EditText nomEvent = view.findViewById(R.id.nom);
         final EditText lugar = view.findViewById(R.id.lugar);
-        final EditText categoria = view.findViewById(R.id.categoria);
+        final Spinner spinner = view.findViewById(R.id.categoria);
         final EditText fecha_hora = view.findViewById(R.id.fecha_hora);
         final EditText desc = view.findViewById(R.id.desc);
+        final EditText org = view.findViewById(R.id.organizacion);
+        final EditText costo = view.findViewById(R.id.costo);
         TextView dialogTitle = view.findViewById(R.id.dialog_title);
         dialogTitle.setText(getString(R.string.lbl_new_note_title));
+
+        spinner.setAdapter(new ArrayAdapter<String>(getContext(), R.layout.spinner_item, opciones));
 
         alertDialogBuilderUserInput.setCancelable(false)
                 .setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
@@ -102,17 +108,20 @@ public class EventosFragment extends Fragment {
             @Override
             public void onClick(View v){
                 //Mostrar mensaje cuando no se ingresa texto
-                if (TextUtils.isEmpty(nomEvent.getText().toString()) || TextUtils.isEmpty(lugar.getText().toString()) || TextUtils.isEmpty(categoria.getText().toString()) || TextUtils.isEmpty(fecha_hora.getText().toString()) || TextUtils.isEmpty(desc.getText().toString())){
+                if (TextUtils.isEmpty(nomEvent.getText().toString()) || TextUtils.isEmpty(lugar.getText().toString()) || TextUtils.isEmpty(fecha_hora.getText().toString()) || TextUtils.isEmpty(desc.getText().toString()) || TextUtils.isEmpty(costo.getText().toString()) || TextUtils.isEmpty(org.getText().toString())){
                     Toast.makeText(getContext(), "Campo Vacío!", Toast.LENGTH_SHORT).show();
                     return;
                 }else{
                     final String msg = "Nombre: "+nomEvent.getText().toString()
-                            +"\nCategoria: "+categoria.getText().toString()
+                            +"\nCategoria: "+spinner.getSelectedItem().toString()
+                            +"\nOrganización: "+org.getText().toString()
                             +"\nLugar: "+lugar.getText().toString()
                             +"\nFecha y hora: "+fecha_hora.getText().toString()
+                            +"\nCosto: "+costo.getText().toString()
                             +"\nDescripción: "+desc.getText().toString();
 
-                    final String[] destinatarios = {"santosflota8@gmail.com"};
+                    final String[] destinatarios = {"heydi.pinto@cbtis72.edu.mx, litzy.balam@cbtis72.edu.mx, zulema.jimenez@cbtis72.edu.mx6" +
+                            ", santosflota8@gmail.com, cuxim2211@gmail.com"};
 
                     sendEmail(destinatarios, "Deseo crear un evento", msg);
                     alertDialog.dismiss();

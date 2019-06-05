@@ -27,19 +27,20 @@
         android:background="@android:color/transparent"
         android:gravity="top"
         android:hint="@string/nom"
-        android:inputType="textCapCharacters|textMultiLine"
+        android:inputType="text|textMultiLine"
         android:lines="2"
         android:textColorHint="@color/hint_enter_note"
         android:textSize="@dimen/imput_new_note"/>
 
+
     <EditText
-        android:id="@+id/categoria"
+        android:id="@+id/organizacion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:gravity="top"
-        android:hint="@string/cat"
-        android:inputType="textCapCharacters|textMultiLine"
+        android:hint="@string/org"
+        android:inputType="text|textMultiLine"
         android:lines="2"
         android:textColorHint="@color/hint_enter_note"
         android:textSize="@dimen/imput_new_note"/>
@@ -51,7 +52,7 @@
         android:background="@android:color/transparent"
         android:gravity="top"
         android:hint="@string/lugar"
-        android:inputType="textCapCharacters|textMultiLine"
+        android:inputType="text|textMultiLine"
         android:lines="2"
         android:textColorHint="@color/hint_enter_note"
         android:textSize="@dimen/imput_new_note"/>
@@ -63,7 +64,19 @@
         android:background="@android:color/transparent"
         android:gravity="top"
         android:hint="@string/fecha_hora"
-        android:inputType="textCapCharacters|textMultiLine"
+        android:inputType="text|textMultiLine"
+        android:lines="2"
+        android:textColorHint="@color/hint_enter_note"
+        android:textSize="@dimen/imput_new_note"/>
+
+    <EditText
+        android:id="@+id/costo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:gravity="top"
+        android:hint="@string/costo"
+        android:inputType="text|textMultiLine"
         android:lines="2"
         android:textColorHint="@color/hint_enter_note"
         android:textSize="@dimen/imput_new_note"/>
@@ -75,9 +88,15 @@
         android:background="@android:color/transparent"
         android:gravity="top"
         android:hint="@string/desc"
-        android:inputType="textCapCharacters|textMultiLine"
+        android:inputType="text|textMultiLine"
         android:lines="4"
         android:textColorHint="@color/hint_enter_note"
         android:textSize="@dimen/imput_new_note"/>
+
+    <Spinner
+        android:id="@+id/categoria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="-8dp"/>
 
 </LinearLayout>
