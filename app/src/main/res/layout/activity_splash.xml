@@ -21,7 +21,7 @@
         app:lottie_autoPlay="true"
         app:lottie_fileName="2.json"
         app:lottie_imageAssetsFolder="assets"
-        app:lottie_loop="true" />
+        app:lottie_loop="true"/>
 
 
     <TextView
