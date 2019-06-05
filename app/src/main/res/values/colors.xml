@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+
+
+    <color name="colorPrimary">#066DA7</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#066DA7</color>
     <color name="fondo">#F44336</color>
-    <color name="hint_enter_note">#89c3c3c3</color>
-    <color name="ecologico">#B347B34C</color>
-    <color name="social">#B3FF5722</color>
-    <color name="cultural">#B3FFD700</color>
+    <color name="hint_enter_note">#A3000000</color>
+    <color name="ecologico">#FFF</color>
+    <color name="social">#FFF</color>
+    <color name="cultural">#FFF</color>
+    <color name="deportivo">#FFF</color>
 </resources>
