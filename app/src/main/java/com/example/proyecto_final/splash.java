@@ -1,10 +1,14 @@
 package com.example.proyecto_final;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 public class splash extends Activity {
     // Duración en milisegundos que se mostrará el splash
@@ -19,9 +23,26 @@ public class splash extends Activity {
 
         new Handler().postDelayed(new Runnable(){
             public void run(){
-                // Cuando pasen los 3 segundos, pasamos a la actividad principal de la aplicación
-                Intent intent = new Intent(splash.this, ActivityPrincipal.class);
-                startActivity(intent);
+                ConnectivityManager connectivityManager = (ConnectivityManager)
+                        getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo networkInfo=connectivityManager.getActiveNetworkInfo();
+
+
+                if (networkInfo!=null && networkInfo.isConnected()){
+                    Intent intent = new Intent(splash.this, ActivityPrincipal.class);
+                    Toast.makeText(getApplicationContext(),"Conectado.",Toast.LENGTH_SHORT).show();
+
+                    startActivity(intent);
+                    finish();
+
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"No hay conexión a internet, prueba más tarde.",Toast.LENGTH_SHORT).show();
+
+
+                }
+
+
                 finish();
             };
         }, DURACION_SPLASH);
