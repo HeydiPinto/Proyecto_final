@@ -4,4 +4,9 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="fondo">#76A3B8</color>
+    <color name="hint_enter_note"></color>
+    <color name="social"></color>
+    <color name="cultural"></color>
+    <color name="ecologico"></color>
+    <color name="deportivo"></color>
 </resources>
