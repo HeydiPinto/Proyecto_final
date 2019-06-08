@@ -1,4 +1,4 @@
-package com.example.proyecto_final;
+package com.example.proyecto_final.Fragments;
 
 
 import android.content.DialogInterface;
@@ -19,6 +19,9 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.proyecto_final.MyAdapter;
+import com.example.proyecto_final.R;
 
 
 /**

@@ -10,6 +10,10 @@ import android.support.annotation.NonNull;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.proyecto_final.Fragments.EventosFragment;
+import com.example.proyecto_final.Fragments.InfoFragment;
+import com.example.proyecto_final.Fragments.PerfilFragment;
+
 public class ActivityPrincipal extends AppCompatActivity {
     private TextView mTextMessage;
     private ActionBar toolbar;
