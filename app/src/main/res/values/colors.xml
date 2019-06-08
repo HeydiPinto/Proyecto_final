@@ -9,4 +9,5 @@
     <color name="cultural"></color>
     <color name="ecologico"></color>
     <color name="deportivo"></color>
+    <color name="progress">#FF9800</color>
 </resources>

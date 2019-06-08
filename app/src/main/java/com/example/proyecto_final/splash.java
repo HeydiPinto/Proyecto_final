@@ -35,14 +35,14 @@ public class splash extends Activity {
 
                 if (networkInfo!=null && networkInfo.isConnected()){
                     Intent intent = new Intent(splash.this, ActivityPrincipal.class);
-                    Toast.makeText(getApplicationContext(),"Conectado.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Conexión Estable",Toast.LENGTH_SHORT).show();
 
                     startActivity(intent);
                     finish();
 
                 }
                 else{
-                    Toast.makeText(getApplicationContext(),"No hay conexión a internet, prueba más tarde.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"No hay conexión a Internet \n       Prueba más tarde",Toast.LENGTH_SHORT).show();
 
 
                 }
