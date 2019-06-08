@@ -5,9 +5,11 @@
     <color name="colorAccent">#066DA7</color>
     <color name="fondo">#066DA7</color>
     <color name="hint_enter_note">#8A000000</color>
-        <color name="social">#FFF</color>
+    <color name="social">#FFF</color>
     <color name="cultural">#FFF</color>
     <color name="ecologico">#FFF</color>
     <color name="deportivo">#FFF</color>
     <color name="progress">#FF9800</color>
+    <color name="prueba">#fff</color>
+
 </resources>
