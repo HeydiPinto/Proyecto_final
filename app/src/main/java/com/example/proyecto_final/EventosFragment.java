@@ -58,8 +58,10 @@ public class EventosFragment extends Fragment {
             }
         });
 
+        MyAdapter adaptador = new MyAdapter(getActivity().getApplicationContext(),datos);
         lista= (ListView) rootView.findViewById(R.id.listView);
-        lista.setAdapter(new MyAdapter(getActivity().getApplicationContext(),datos));
+        lista.setAdapter(adaptador);
+        adaptador.notifyDataSetChanged();
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
