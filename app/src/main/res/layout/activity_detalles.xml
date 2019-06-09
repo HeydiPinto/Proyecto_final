@@ -35,7 +35,7 @@
             fab:fabSize="mini"
             fab:fab_colorNormal="@color/progress"
             fab:fab_icon="@android:drawable/ic_menu_close_clear_cancel"
-            fab:fab_title="¡Participa!" />
+            fab:fab_title="Cancelar Participación" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnPart"

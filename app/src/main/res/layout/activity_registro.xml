@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@drawable/shapeemail"
-        android:drawableLeft="@android:drawable/ic_menu_today"
+        android:drawableLeft="@drawable/calendario"
         android:drawablePadding="10dp"
         android:hint="Fecha Nacimiento"
         android:padding="15dp"
