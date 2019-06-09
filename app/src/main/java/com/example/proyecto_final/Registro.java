@@ -28,7 +28,6 @@ public class Registro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
-
         email=(EditText)findViewById(R.id.email);
         nombre=(EditText)findViewById(R.id.nomI);
         contrasena=(EditText)findViewById(R.id.contra);
@@ -60,12 +59,12 @@ public class Registro extends AppCompatActivity {
             Map<String, String> map= new HashMap<>();
             map.put("email",email.getText().toString());
             map.put("nombre_usuario", nombre.getText().toString());
-            map.put("Contraseña", contrasena.getText().toString());
-            map.put("Fecha_Nacimiento", fechaN.getText().toString());
+            map.put("contra", contrasena.getText().toString());
+            map.put("fecha_nacimiento", fechaN.getText().toString());
             return map;
         }
 
         };
-        Volley.newRequestQueue(this).add(request);
+        rq.add(request);
     }
 }
