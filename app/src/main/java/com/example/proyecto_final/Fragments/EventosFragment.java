@@ -20,6 +20,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.proyecto_final.DetallesActivity;
 import com.example.proyecto_final.MyAdapter;
 import com.example.proyecto_final.R;
 
@@ -68,7 +69,8 @@ public class EventosFragment extends Fragment {
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getContext(),"Clicked: "+position, Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getActivity().getApplicationContext(), DetallesActivity.class);
+                startActivity(i);
             }
         });
 
