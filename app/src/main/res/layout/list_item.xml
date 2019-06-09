@@ -62,5 +62,4 @@
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
 
-
 </android.support.constraint.ConstraintLayout>
