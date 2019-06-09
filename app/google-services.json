@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "123762253534",
+    "firebase_url": "https://nav-e-ff3bb.firebaseio.com",
+    "project_id": "nav-e-ff3bb",
+    "storage_bucket": "nav-e-ff3bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123762253534:android:9657fd3b09d9b67d",
+        "android_client_info": {
+          "package_name": "com.example.proyecto_final"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "123762253534-t5cefrpd1bkneijup0kjf4idunum6ov2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.proyecto_final",
+            "certificate_hash": "57ddd581d1729562c4a109e2135330c0cb293050"
+          }
+        },
+        {
+          "client_id": "123762253534-2joaadcdg6ps0k3d4d0oqgei37e8i7eq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLT5yhQjafxJsrSG8VWp0Fa7e7UdXjHgI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "123762253534-2joaadcdg6ps0k3d4d0oqgei37e8i7eq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
