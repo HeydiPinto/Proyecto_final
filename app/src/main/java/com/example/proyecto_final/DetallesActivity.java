@@ -43,12 +43,5 @@ public class DetallesActivity extends AppCompatActivity {
             }
         });
 
-        /*btnGps.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "GPS", Toast.LENGTH_SHORT).show();
-            }
-        });*/
-
     }
 }
