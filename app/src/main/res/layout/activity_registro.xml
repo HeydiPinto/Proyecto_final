@@ -15,6 +15,7 @@
         android:src="@drawable/logo" />
 
     <EditText
+        android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -28,6 +29,7 @@
         android:textColorHint="@color/white" />
 
     <EditText
+        android:id="@+id/nombreu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -41,6 +43,7 @@
         android:textColorHint="@color/white" />
 
     <EditText
+        android:id="@+id/contra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -54,6 +57,7 @@
         android:textColorHint="@color/white" />
 
     <EditText
+        android:id="@+id/fechan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
