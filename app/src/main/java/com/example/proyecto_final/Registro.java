@@ -60,7 +60,8 @@ public class Registro extends AppCompatActivity {
             }
         }) {
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> map = new HashMap<String, String>();
+                Map<String, String> map = new HashMap<String, String>()
+                        ;
                 map.put("email", nombre.getText().toString());
                 map.put("nombre_usuario", nombre.getText().toString());
                 map.put("contra", contrasena.getText().toString());
