@@ -27,7 +27,7 @@ public class SplashScreen extends AppCompatActivity {
                 ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
                 if (networkInfo != null && networkInfo.isConnected()){
-                    Intent i = new Intent(SplashScreen.this, Registro.class);
+                    Intent i = new Intent(SplashScreen.this, ActivityPrincipal.class);
                     Toast.makeText(getApplicationContext(), "Conexión Estable", Toast.LENGTH_SHORT).show();
                     startActivity(i);
                     finish();

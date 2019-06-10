@@ -101,7 +101,7 @@ public class EventosFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialogBox, int id) {
                     }
-                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogBox, int id) {
                 dialogBox.cancel();
@@ -127,7 +127,7 @@ public class EventosFragment extends Fragment {
                             +"\nCosto: "+costo.getText().toString()
                             +"\nDescripción: "+desc.getText().toString();
 
-                    final String[] destinatarios = {"heydi.pinto@cbtis72.edu.mx, litzy.balam@cbtis72.edu.mx, zulema.jimenez@cbtis72.edu.mx6" +
+                    final String[] destinatarios = {"heydi.pinto@cbtis72.edu.mx, litzy.balam@cbtis72.edu.mx, zulema.jimenez@cbtis72.edu.mx" +
                             ", santosflota8@gmail.com, cuxim2211@gmail.com"};
 
                     sendEmail(destinatarios, "Deseo crear un evento", msg);
