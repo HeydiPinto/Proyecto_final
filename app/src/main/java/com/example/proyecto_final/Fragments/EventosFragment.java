@@ -20,9 +20,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.proyecto_final.DetallesActivity;
 import com.example.proyecto_final.MyAdapter;
 import com.example.proyecto_final.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 /**
@@ -30,6 +39,7 @@ import com.example.proyecto_final.R;
  */
 public class EventosFragment extends Fragment {
 
+    RequestQueue requestQueue;
     FloatingActionButton fab;
     ListView lista;
     String [][] datos={
@@ -152,5 +162,40 @@ public class EventosFragment extends Fragment {
         }
     }
 
+    private void datoslista(String URL){
+        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                JSONObject jsonObject = null;
+                for (int i = 0; i < response.length(); i++) {
+                    for (int j = 0; j < 2; j++) {
+                        if (j == 0) {
+                            try {
+                                datos[i][j] = jsonObject.getString("nombreevento");
+                            } catch (JSONException e) {
+                                Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        } else if (j == 1) {
+                            try {
+                                datos[i][j] = jsonObject.getString("tipo");
+                            } catch (JSONException e) {
+                                Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(),"ERROR DE CONEXION",Toast.LENGTH_SHORT).show();
+            }
+        }
+        );
+
+        requestQueue = (RequestQueue) Volley.newRequestQueue(getContext());
+        requestQueue.add(jsonArrayRequest);
+    }
 
 }
