@@ -34,7 +34,7 @@ public class ActivityPrincipal extends AppCompatActivity {
 
                 case R.id.info:
                     toolbar.setTitle("Informacion");
-                    fragment = new com.example.proyecto_final.InfoFragment();
+                    fragment = new com.example.proyecto_final.Fragments.InfoFragment.InfoFragment();
                     loadFragment(fragment);
                     return true;
                 case R.id.perfil:

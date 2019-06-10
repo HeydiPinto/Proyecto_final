@@ -65,7 +65,7 @@
         android:background="@drawable/shapeemail"
         android:drawableLeft="@drawable/ic_today_black_24dp"
         android:drawablePadding="10dp"
-        android:hint="0000-00-00"
+        android:hint="AAAA-MM-DD"
         android:padding="15dp"
         android:textColor="@color/white"
         android:textColorHighlight="@color/white"
