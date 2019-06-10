@@ -1,6 +1,8 @@
 package com.example.proyecto_final;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -22,7 +24,7 @@ import java.util.Map;
 
 public class Registro extends AppCompatActivity {
     EditText email,nombre,contrasena,fechaN;
-    Button registrar;
+    Button registrar, iniciaSesion;
     RequestQueue rq;
 
     @Override
@@ -36,6 +38,7 @@ public class Registro extends AppCompatActivity {
         fechaN=(EditText)findViewById(R.id.fecha);
 
         registrar=(Button) findViewById(R.id.txtregistrar);
+        iniciaSesion=(Button) findViewById(R.id.btnInicioSesion);
         rq = Volley.newRequestQueue(this);
 
         registrar.setOnClickListener(new View.OnClickListener() {
@@ -44,11 +47,18 @@ public class Registro extends AppCompatActivity {
                 enviarDatos();
             }
         });
+        iniciaSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), Login.class);
+                startActivity(i);
+            }
+        });
     }
     public void enviarDatos(){
 
-        if (TextUtils.isEmpty(email.getText().toString()) || TextUtils.isEmpty(nombre.getText().toString()) || TextUtils.isEmpty(contrasena.getText().toString()) || TextUtils.isEmpty(fechaN.getText().toString())){
-            Toast.makeText(getApplicationContext(), "Campos Vacíos!", Toast.LENGTH_SHORT).show();
+        if (vacio(email) || vacio(nombre) || vacio(contrasena) || vacio(fechaN)){
+
         }else{
             String url="http://puntosingular.mx/nave/ingresar.php";
             StringRequest request= new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -72,8 +82,27 @@ public class Registro extends AppCompatActivity {
 
             };
             rq.add(request);
+
+            //Guardar
+            String mail = email.getText().toString();
+            String nom2 = nombre.getText().toString();
+            SharedPreferences preferences = getSharedPreferences("datos", Context.MODE_PRIVATE);
+            SharedPreferences.Editor objEditor = preferences.edit();
+            objEditor.putString(mail, nom2);
+            objEditor.commit();
+            Toast.makeText(getApplicationContext(), "Guardado: "+nom2, Toast.LENGTH_SHORT).show();
+
             Intent i = new Intent(getApplicationContext(), ActivityPrincipal.class);
             startActivity(i);
+        }
+    }
+
+    public boolean vacio(EditText et){
+        if (TextUtils.isEmpty(et.getText().toString())){
+            et.setError("Campo Vacío!");
+            return true;
+        }else {
+            return false;
         }
     }
 }
