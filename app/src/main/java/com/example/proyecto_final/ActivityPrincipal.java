@@ -7,8 +7,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import com.example.proyecto_final.Fragments.EventosFragment;
+import com.example.proyecto_final.Fragments.InfoFragment;
+import com.example.proyecto_final.Fragments.PerfilFragment;
 
 public class ActivityPrincipal extends AppCompatActivity {
     private TextView mTextMessage;
@@ -26,7 +31,7 @@ public class ActivityPrincipal extends AppCompatActivity {
                     fragment = new EventosFragment();
                     loadFragment(fragment);
                     return true;
-                    //KK
+
                 case R.id.info:
                     toolbar.setTitle("Informacion");
                     fragment = new InfoFragment();
@@ -62,4 +67,11 @@ public class ActivityPrincipal extends AppCompatActivity {
         loadFragment(new EventosFragment());
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }
