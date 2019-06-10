@@ -84,13 +84,11 @@ public class Registro extends AppCompatActivity {
             rq.add(request);
 
             //Guardar
-            String mail = email.getText().toString();
-            String nom2 = nombre.getText().toString();
+            String nomUsuario = nombre.getText().toString();
             SharedPreferences preferences = getSharedPreferences("datos", Context.MODE_PRIVATE);
             SharedPreferences.Editor objEditor = preferences.edit();
-            objEditor.putString(mail, nom2);
+            objEditor.putString("nombreGuardado", nomUsuario);
             objEditor.commit();
-            Toast.makeText(getApplicationContext(), "Guardado: "+nom2, Toast.LENGTH_SHORT).show();
 
             Intent i = new Intent(getApplicationContext(), ActivityPrincipal.class);
             startActivity(i);

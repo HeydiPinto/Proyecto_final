@@ -1,6 +1,8 @@
 package com.example.proyecto_final;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -36,33 +38,45 @@ public class DetallesActivity extends AppCompatActivity {
         desc = (TextView) findViewById(R.id.txtDescD);
         cat = (TextView) findViewById(R.id.txtCateD);
 
+
+
         morph = (FloatingActionsMenu) findViewById(R.id.menu_fab);
-        final View uno, dos, tres;
-        uno = findViewById(R.id.btnGps);
-        dos = findViewById(R.id.btnPart);
-        tres = findViewById(R.id.btnDelete);
-        tres.setVisibility(View.GONE);
-        uno.setOnClickListener(new View.OnClickListener() {
+        final View btnUbicacion, btnParticipar, btnCancelacion;
+        btnUbicacion = findViewById(R.id.btnGps);
+        btnParticipar = findViewById(R.id.btnPart);
+        btnCancelacion = findViewById(R.id.btnDelete);
+        btnCancelacion.setVisibility(View.GONE);
+
+        btnUbicacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), MapsActivity.class);
                 startActivity(i);
+
+                SharedPreferences preferences = getSharedPreferences("datos", Context.MODE_PRIVATE);
+                String datosGuardados = preferences.getString("nombreGuardado", "");
+
+                if (datosGuardados.length() == 0){
+                    Toast.makeText(getApplicationContext(), "Sin valor", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(getApplicationContext(), "Valor: "+datosGuardados, Toast.LENGTH_SHORT).show();
+                }
             }
         });
-        dos.setOnClickListener(new View.OnClickListener() {
+        btnParticipar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Ya formas parte", Toast.LENGTH_SHORT).show();
-                dos.setVisibility(View.GONE);
-                tres.setVisibility(View.VISIBLE);
+                btnParticipar.setVisibility(View.GONE);
+                btnCancelacion.setVisibility(View.VISIBLE);
             }
         });
-        tres.setOnClickListener(new View.OnClickListener() {
+        btnCancelacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Ya no :v", Toast.LENGTH_SHORT).show();
-                tres.setVisibility(View.GONE);
-                dos.setVisibility(View.VISIBLE);
+                btnCancelacion.setVisibility(View.GONE);
+                btnParticipar.setVisibility(View.VISIBLE);
             }
         });
     }
