@@ -8,15 +8,21 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Arrays;
+
+
 public class MyAdapter extends BaseAdapter {
 
     private static LayoutInflater inflater= null;
     Context contexto;
     String[][] datos;
-
+    //int tamaño;
+    //,int tamaño
     public MyAdapter(Context conexto, String[][]datos){
         this.contexto= conexto;
         this.datos=datos;
+        //this.tamaño=tamaño;
+        System.out.println("deep arr: " + Arrays.deepToString(datos));
         inflater=(LayoutInflater)conexto.getSystemService(conexto.LAYOUT_INFLATER_SERVICE);
 
     }
@@ -29,7 +35,7 @@ public class MyAdapter extends BaseAdapter {
         nom.setText(datos[i][0]);
         desc.setText(datos[i][1]);
 
-        switch (datos[i][1]){
+        /*switch (datos[i][1]){
             case "Ecologico":
                 fondo.setImageResource(R.color.ecologico);
                 break;
@@ -39,15 +45,25 @@ public class MyAdapter extends BaseAdapter {
             case "Cultural":
                 fondo.setImageResource(R.color.cultural);
                 break;
-        }
+        }*/
 
         return vista;
+        //return null;
     }
 
 
     @Override
     public int getCount() {
-        return datos.length;
+        //return tamaño;
+        /*if(tamaño==0){
+            return 10;
+        }else{
+            return tamaño;
+        }*/
+       //return 10 ;
+
+        //return 10;
+        return 10;
     }
 
     @Override

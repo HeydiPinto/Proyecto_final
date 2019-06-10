@@ -20,19 +20,31 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.proyecto_final.DetallesActivity;
 import com.example.proyecto_final.MyAdapter;
 import com.example.proyecto_final.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Arrays;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class EventosFragment extends Fragment {
-
+        RequestQueue requestQueue;
     FloatingActionButton fab;
+   // int tamaño;
     ListView lista;
-    String [][] datos={
+    /*String [][] datos={
             {"Evento 1", "Ecologico"},
             {"Evento 2", "Social"},
             {"Evento 3", "Ecologico"},
@@ -41,7 +53,8 @@ public class EventosFragment extends Fragment {
             {"Evento 6", "Cultural"},
             {"Evento 7", "Cultural"},
             {"Evento 8", "Social"}
-    };
+    };*/
+    String [][] datos = new String[10][2];
     String[] opciones = {"Ecológico","Social","Cultural","Deportivo"};
     String cat;
 
@@ -61,15 +74,22 @@ public class EventosFragment extends Fragment {
                 showNoteDialog();
             }
         });
+        datoslista("http://puntosingular.mx/nave/obtenerInfoLista.php");
+        System.out.println("deep arr: " + Arrays.deepToString(datos));
+        final MyAdapter adaptador = new MyAdapter(getActivity().getApplicationContext(),datos);
 
-        MyAdapter adaptador = new MyAdapter(getActivity().getApplicationContext(),datos);
         lista= (ListView) rootView.findViewById(R.id.listView);
         lista.setAdapter(adaptador);
         adaptador.notifyDataSetChanged();
+
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //adaptador
+                TextView nom=(TextView) view.findViewById(R.id.nom);
+                String textTitleList=nom.getText().toString();
                 Intent i = new Intent(getActivity().getApplicationContext(), DetallesActivity.class);
+                i.putExtra("nombre_evento", textTitleList);
                 startActivity(i);
             }
         });
@@ -150,6 +170,41 @@ public class EventosFragment extends Fragment {
         }catch (android.content.ActivityNotFoundException ex){
             Toast.makeText(getContext(), "No se encontro aplicación de correo", Toast.LENGTH_LONG).show();
         }
+    }
+
+//obtengo los datos de la lista
+    private void datoslista(String URL){
+        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                JSONObject jsonObject = null;
+                 //tamaño=response.length();
+
+                for (int i = 0; i < response.length(); i++) {
+                    try{
+                        jsonObject=response.getJSONObject(i);
+                        for (int j = 0; j < 2; j++){
+                            if(j==0){
+                                datos[i][0] = jsonObject.getString("nombre_event");
+                            }else if (j==1){
+                                datos[i][1] = jsonObject.getString("tipo");
+                            }
+                        }
+                    } catch (JSONException e) {
+                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(),"ERROR DE CONEXION",Toast.LENGTH_SHORT).show();
+            }
+        }
+        );
+
+         requestQueue = (RequestQueue) Volley.newRequestQueue(getContext());
+         requestQueue.add(jsonArrayRequest);
     }
 
 

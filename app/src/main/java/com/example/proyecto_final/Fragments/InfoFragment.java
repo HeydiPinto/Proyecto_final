@@ -1,4 +1,4 @@
-package com.example.proyecto_final;
+package com.example.proyecto_final.Fragments;
 
 
 import android.os.Bundle;
@@ -13,6 +13,10 @@ import android.content.Context;
 import android.widget.AdapterView;
 
 //import com.google.android.gms.ads.MobileAds;
+
+import com.example.proyecto_final.R;
+import com.example.proyecto_final.singleHorizontal;
+import com.example.proyecto_final.singleVertical;
 
 import java.util.ArrayList;
 
@@ -57,7 +61,7 @@ public class InfoFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_info, container, false);
-        recyclerView=(RecyclerView) view.findViewById(R.id.inner_recyclerview);
+        recyclerView=(RecyclerView) view.findViewById(R.id.inner_recyclerView);
         //lista.setAdapter(new Adaptador(getContext(),Datos,datosImg));
 
         return view;
