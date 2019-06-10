@@ -12,7 +12,7 @@
     <ImageView
         android:layout_width="62dp"
         android:layout_height="137dp"
-        android:src="@drawable/logo" />
+        android:src="@drawable/logo_inicial" />
 
     <EditText
         android:id="@+id/email"
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@drawable/shapeemail"
-        android:drawableLeft="@android:drawable/ic_dialog_email"
+        android:drawableLeft="@drawable/ic_mail_outline_black_24dp"
         android:drawablePadding="10dp"
         android:hint="Email"
         android:padding="15dp"
@@ -63,9 +63,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@drawable/shapeemail"
-        android:drawableLeft="@android:drawable/ic_menu_today"
+        android:drawableLeft="@drawable/ic_today_black_24dp"
         android:drawablePadding="10dp"
-        android:hint="Fecha Nacimiento"
+        android:hint="AAAA-MM-DD"
         android:padding="15dp"
         android:textColor="@color/white"
         android:textColorHighlight="@color/white"
