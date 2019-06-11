@@ -87,9 +87,9 @@ public class EventosFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //adaptador
                 TextView nom=(TextView) view.findViewById(R.id.nom);
-                String textTitleList=nom.getText().toString();
                 Intent i = new Intent(getActivity().getApplicationContext(), DetallesActivity.class);
-                i.putExtra("nombre_evento", textTitleList);
+               // i.putExtra("nombre_evento", textTitleList);
+                i.putExtra("nombre_evento", nom.getText().toString());
                 startActivity(i);
             }
         });
