@@ -29,6 +29,15 @@
         fab:fab_labelsPosition="left">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fabSize="mini"
+            fab:fab_colorNormal="@color/progress"
+            fab:fab_icon="@drawable/ic_content_paste_black_24dp"
+            fab:fab_title="¿Estás Participando?"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

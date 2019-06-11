@@ -104,7 +104,7 @@ public class Registro extends AppCompatActivity {
             };
             rq.add(request);
 
-            //Guardar
+            //Guardar Usuario Actual
             String nomUsuario = nombre.getText().toString();
             SharedPreferences preferences = getSharedPreferences("datos", Context.MODE_PRIVATE);
             SharedPreferences.Editor objEditor = preferences.edit();
