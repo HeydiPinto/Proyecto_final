@@ -1,4 +1,4 @@
-package com.example.proyecto_final.Fragments.InfoFragment;
+package com.example.proyecto_final.Fragments;
 
 
 import android.os.Bundle;
@@ -61,7 +61,7 @@ public class InfoFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_info, container, false);
-
+        recyclerView=(RecyclerView) view.findViewById(R.id.inner_recyclerView);
         //lista.setAdapter(new Adaptador(getContext(),Datos,datosImg));
 
         return view;
