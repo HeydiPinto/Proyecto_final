@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.example.proyecto_final.Fragments.EventosFragment;
 
+import com.example.proyecto_final.Fragments.InfoFragment.*;
+import com.example.proyecto_final.Fragments.InfoFragment.InfoFragment;
 import com.example.proyecto_final.Fragments.PerfilFragment;
 
 public class ActivityPrincipal extends AppCompatActivity {
@@ -34,8 +36,8 @@ public class ActivityPrincipal extends AppCompatActivity {
 
                 case R.id.info:
                     toolbar.setTitle("Informacion");
-                    //fragment = new InfoFragment();
-                    //loadFragment(fragment);
+                    fragment = new InfoFragment();
+                    loadFragment(fragment);
                     return true;
                 case R.id.perfil:
                     toolbar.setTitle("Perfil");
