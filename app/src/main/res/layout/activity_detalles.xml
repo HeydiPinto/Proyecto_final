@@ -90,8 +90,8 @@
 
     <TextView
         android:id="@+id/txtOrg"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
+        android:layout_width="353dp"
+        android:layout_height="52dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Organizador"
@@ -103,7 +103,7 @@
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="48dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         fab:srcCompat="@drawable/ic_location_on_black_24dp" />
@@ -112,18 +112,17 @@
         android:id="@+id/txtLugar"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="32dp"
         android:text="Lugar"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/txtOrg" />
+        tools:layout_editor_absoluteY="301dp" />
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="48dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
         fab:srcCompat="@drawable/ic_access_time_black_24dp" />
@@ -132,18 +131,16 @@
         android:id="@+id/txtFecHor"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
         android:text="Fecha y Hora"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/txtLugar" />
+        tools:layout_editor_absoluteX="53dp"
+        tools:layout_editor_absoluteY="374dp" />
 
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4"
         fab:srcCompat="@drawable/ic_attach_money_black_24dp" />
@@ -152,18 +149,16 @@
         android:id="@+id/txtCosto"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
         android:text="Costo"
-        app:layout_constraintStart_toEndOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/txtFecHor" />
+        tools:layout_editor_absoluteX="57dp"
+        tools:layout_editor_absoluteY="439dp" />
 
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView5"
         fab:srcCompat="@drawable/ic_group_black_24dp" />
@@ -172,18 +167,17 @@
         android:id="@+id/txtCateD"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
         android:text="Categoria"
         app:layout_constraintStart_toEndOf="@+id/imageView6"
-        app:layout_constraintTop_toBottomOf="@+id/txtCosto" />
+        tools:layout_editor_absoluteY="492dp" />
 
     <ImageView
         android:id="@+id/imageView8"
         android:layout_width="25dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="52dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView6"
         fab:srcCompat="@drawable/ic_assignment_black_24dp" />
@@ -192,10 +186,9 @@
         android:id="@+id/txtDescD"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="20dp"
         android:text="@string/desc"
         app:layout_constraintStart_toEndOf="@+id/imageView8"
-        app:layout_constraintTop_toBottomOf="@+id/txtCateD" />
+        tools:layout_editor_absoluteY="570dp" />
 
 </android.support.constraint.ConstraintLayout>

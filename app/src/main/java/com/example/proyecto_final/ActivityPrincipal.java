@@ -19,33 +19,36 @@ public class ActivityPrincipal extends AppCompatActivity {
     private TextView mTextMessage;
     private ActionBar toolbar;
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener;
 
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Fragment fragment;
-            switch (item.getItemId()) {
-                case R.id.eventos:
-                    toolbar.setTitle("Eventos");
-                    fragment = new EventosFragment();
-                    loadFragment(fragment);
-                    return true;
+    {
+        mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-                case R.id.info:
-                    toolbar.setTitle("Informacion");
-                    fragment = new com.example.proyecto_final.Fragments.InfoFragment();
-                    loadFragment(fragment);
-                    return true;
-                case R.id.perfil:
-                    toolbar.setTitle("Perfil");
-                    fragment = new PerfilFragment();
-                    loadFragment(fragment);
-                    return true;
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment fragment;
+                switch (item.getItemId()) {
+                    case R.id.eventos:
+                        toolbar.setTitle("Eventos");
+                        fragment = new EventosFragment();
+                        loadFragment(fragment);
+                        return true;
+
+                    case R.id.info:
+                        toolbar.setTitle("Informacion");
+                        fragment = new com.example.proyecto_final.Fragments.InfoFragment();
+                        loadFragment(fragment);
+                        return true;
+                    case R.id.perfil:
+                        toolbar.setTitle("Perfil");
+                        fragment = new PerfilFragment();
+                        loadFragment(fragment);
+                        return true;
+                }
+                return false;
             }
-            return false;
-        }
-    };
+        };
+    }
 
     private void loadFragment(Fragment fragment) {
         // load fragment
