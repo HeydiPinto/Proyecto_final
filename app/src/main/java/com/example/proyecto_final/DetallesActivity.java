@@ -1,6 +1,8 @@
 package com.example.proyecto_final;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +35,9 @@ public class DetallesActivity extends AppCompatActivity {
         RequestQueue requestQueue;
     private FloatingActionsMenu morph;
     TextView nom, org, lugar, fecHora, costo, descrip, cat;
+    RequestQueue rq;
+    String idEvento, putUbicacion;
+    double latitud, longitud;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,39 +51,54 @@ public class DetallesActivity extends AppCompatActivity {
         costo = (TextView) findViewById(R.id.txtCosto);
         descrip = (TextView) findViewById(R.id.txtDescrip);
         cat = (TextView) findViewById(R.id.txtCateD);
+        rq = Volley.newRequestQueue(this);
 
         morph = (FloatingActionsMenu) findViewById(R.id.menu_fab);
-        final View uno, dos, tres;
-        uno = findViewById(R.id.btnGps);
-        dos = findViewById(R.id.btnPart);
-        tres = findViewById(R.id.btnDelete);
-        tres.setVisibility(View.GONE);
+        final View btnMapa, btnParticipar, btnCancelar, btnVerificar;
+        btnMapa = findViewById(R.id.btnGps);
+        btnParticipar = findViewById(R.id.btnPart);
+        btnCancelar = findViewById(R.id.btnDelete);
+        btnVerificar = findViewById(R.id.btnCheck);
+
+        btnCancelar.setVisibility(View.GONE);
+        btnParticipar.setVisibility(View.GONE);
+
+        btnVerificar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                existe(btnCancelar, btnParticipar);
+                btnVerificar.setVisibility(View.GONE);
+            }
+        });
+
+        btnCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                eliminar();
+            }
+        });
+
+        btnParticipar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                asistir();
+            }
+        });
+
         Intent i=getIntent();
         Bundle b=i.getExtras();
-            String nomEve =b.getString("nombre_evento");
+        final String nomEve =b.getString("nombre_evento");
 
         obtenerDatosDetalles(nomEve);
-        uno.setOnClickListener(new View.OnClickListener() {
+
+        btnMapa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), MapsActivity.class);
+                i.putExtra("la", latitud);
+                i.putExtra("lo", longitud);
+                i.putExtra("ubi", putUbicacion);
                 startActivity(i);
-            }
-        });
-        dos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Ya formas parte", Toast.LENGTH_SHORT).show();
-                dos.setVisibility(View.GONE);
-                tres.setVisibility(View.VISIBLE);
-            }
-        });
-        tres.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Ya no :v", Toast.LENGTH_SHORT).show();
-                tres.setVisibility(View.GONE);
-                dos.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -126,6 +146,7 @@ public class DetallesActivity extends AppCompatActivity {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         try {
                             jsonObject = jsonArray.getJSONObject(i);
+                            idEvento = jsonObject.getString("id");
                             nom.setText(jsonObject.getString("nombreevento"));
                             descrip.setText(jsonObject.getString("descripcion"));
                             lugar.setText(jsonObject.getString("ubicacion"));
@@ -134,6 +155,9 @@ public class DetallesActivity extends AppCompatActivity {
                             org.setText(jsonObject.getString("organizacion"));
                             costo.setText(jsonObject.getString("costo"));
                             //desc.setText(jsonObject.getString("descripcion"));
+                            latitud = jsonObject.getDouble("latitud");
+                            longitud = jsonObject.getDouble("longitud");
+                            putUbicacion = jsonObject.getString("ubicacion");
                         } catch (JSONException e) {
                             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
@@ -167,4 +191,135 @@ public class DetallesActivity extends AppCompatActivity {
         requestQueue = (RequestQueue) Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(request);
     }
+
+    public void existe(final View bCancelar, final View bParticipar){
+        SharedPreferences preferences = getSharedPreferences("datos", Context.MODE_PRIVATE);
+        final String usuarioGuardados = preferences.getString("nombreGuardado", "");
+
+            String url2="http://puntosingular.mx/nave/getoneasistir.php";
+            StringRequest request= new StringRequest(Request.Method.POST, url2, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        JSONArray jsonArray = new JSONArray(response);
+                        JSONObject jsonObject = null;
+                        try {
+                            jsonObject = jsonArray.getJSONObject(0);
+                            if (jsonObject.getString("success") == "true"){
+                                Toast.makeText(getApplicationContext(), jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+                                bCancelar.setVisibility(View.VISIBLE);
+                                bParticipar.setVisibility(View.GONE);
+                            }else{
+                                Toast.makeText(getApplicationContext(), jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+                                bCancelar.setVisibility(View.GONE);
+                                bParticipar.setVisibility(View.VISIBLE);
+                            }
+                        } catch (JSONException e) {
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
+                }
+            }){
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> map = new HashMap<>();
+                    map.put("id_evento", idEvento);
+                    map.put("nombre_usuario", usuarioGuardados);
+                    return map;
+                }
+            };
+            rq.add(request);
+    }
+
+    public void asistir(){
+        SharedPreferences preferences = getSharedPreferences("datos", Context.MODE_PRIVATE);
+        final String usuarioGuardados = preferences.getString("nombreGuardado", "");
+
+        String url2="http://puntosingular.mx/nave/agregarasistir.php";
+        StringRequest request= new StringRequest(Request.Method.POST, url2, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+                    JSONObject jsonObject = null;
+                    try {
+                        jsonObject = jsonArray.getJSONObject(0);
+                        if (jsonObject.getString("success") == "true"){
+                            Toast.makeText(getApplicationContext(), jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(), jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("id_evento", idEvento);
+                map.put("nombre_usuario", usuarioGuardados);
+                return map;
+            }
+        };
+        rq.add(request);
+    }
+
+    public void eliminar(){
+        SharedPreferences preferences = getSharedPreferences("datos", Context.MODE_PRIVATE);
+        final String usuarioGuardados = preferences.getString("nombreGuardado", "");
+
+        String url2="http://puntosingular.mx/nave/eliminarasistir.php";
+        StringRequest request= new StringRequest(Request.Method.POST, url2, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+                    JSONObject jsonObject = null;
+                    try {
+                        jsonObject = jsonArray.getJSONObject(0);
+                        if (jsonObject.getString("success") == "true"){
+                            Toast.makeText(getApplicationContext(), jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(), jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("id_evento", idEvento);
+                map.put("nombre_usuario", usuarioGuardados);
+                return map;
+            }
+        };
+        rq.add(request);
+    }
+
 }
