@@ -1,6 +1,8 @@
 package com.example.proyecto_final;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -98,6 +100,13 @@ public class Login extends AppCompatActivity {
                 }
             };
             rq.add(request);
+
+            //Guardar Usuario Actual
+            String nomUsuario = txtUsuario.getText().toString();
+            SharedPreferences preferences = getSharedPreferences("datos", Context.MODE_PRIVATE);
+            SharedPreferences.Editor objEditor = preferences.edit();
+            objEditor.putString("nombreGuardado", nomUsuario);
+            objEditor.commit();
         }
     }
 
