@@ -19,6 +19,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -64,7 +68,24 @@ public class Registro extends AppCompatActivity {
             StringRequest request= new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-                    Toast.makeText(getApplicationContext(), "Operación exitosa", Toast.LENGTH_SHORT).show();
+                    try {
+                        JSONArray jsonArray = new JSONArray(response);
+                        JSONObject jsonObject = null;
+                        try {
+                            jsonObject = jsonArray.getJSONObject(0);
+                            if (jsonObject.getString("success") == "true"){
+                                Toast.makeText(getApplicationContext(), jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+                            }else if (jsonObject.getString("success") == "false"){
+                                Toast.makeText(getApplicationContext(), jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+                                Intent in = new Intent(getApplicationContext(), ActivityPrincipal.class);
+                                startActivity(in);
+                            }
+                        } catch (JSONException e) {
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -89,9 +110,6 @@ public class Registro extends AppCompatActivity {
             SharedPreferences.Editor objEditor = preferences.edit();
             objEditor.putString("nombreGuardado", nomUsuario);
             objEditor.commit();
-
-            Intent i = new Intent(getApplicationContext(), ActivityPrincipal.class);
-            startActivity(i);
         }
     }
 
