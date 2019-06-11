@@ -8,12 +8,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.content.Context;
 import android.widget.AdapterView;
 
 //import com.google.android.gms.ads.MobileAds;
 
+import com.example.proyecto_final.Adaptador;
 import com.example.proyecto_final.R;
 import com.example.proyecto_final.singleHorizontal;
 import com.example.proyecto_final.singleVertical;
@@ -27,9 +29,9 @@ import java.util.ArrayList;
 public class InfoFragment extends Fragment {
     private RecyclerView recyclerView;
    // Adaptador adaptador;
-    private ArrayList<Object> objects=new ArrayList<>();
-    private ListView lista;
-   /* String[][]Datos={
+   // private ArrayList<Object> objects=new ArrayList<>();
+   private ListView lista;
+   String[][]datos={
             {"¡¡¡UN LITRO DE ACEITE CONTAMINA CERCA DE UN MILLON DE LITROS DE AGUA!!!","Aunque no cocinemos muchos alimentos fritos en aceite, cuando lo hacemos, normalmente tiramos el aceite usado en la pileta de la cocina o en algún otro resumidero, ¿verdad?. Ese es uno de los mayores errores que podemos cometer "},
             {"¿EL VIDRIO SE RECICLA?","El vidrio es 100% reciclable Puede reciclarse infinitamente, jamás pierde sus propiedades "},
             {"¡¡UN GRAN PASO PARA LAS MATEMATICAS!!"," Los mayas emplearon las matemáticas y fueron una de las primeras civilizaciones en utilizar el “cero” en el mundo"},
@@ -40,8 +42,8 @@ public class InfoFragment extends Fragment {
             {"¿MAS DE LA MITAD DE USUAROS DE FACEBOOK EN MEXICO SON MUJERES?","En México las mujeres casi duplican a los hombres en numero de usuarios en las redes sociales (62.3%)de los usuarios mexicanos son mujeres frente a un 37.5 % que son usuarios hombres,                                                                                             mmmmm\n" +
                     " "}
 
-    };*/
-    //int[] datosImg={R.drawable.gota_oli,R.drawable.reciclaje_vidrio,R.drawable.mayas,R.drawable.idiomas,R.drawable.natacion_no,R.drawable.primer_gol,R.drawable.face,R.drawable.user};
+    };
+    int[] datosImg={R.drawable.gota_oli,R.drawable.reciclaje_vidrio,R.drawable.mayas,R.drawable.idiomas,R.drawable.natacion_no,R.drawable.primer_gol,R.drawable.face,R.drawable.user};
     public InfoFragment() {
         // Required empty public constructor
     }
@@ -62,12 +64,13 @@ public class InfoFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_info, container, false);
 
-        //lista.setAdapter(new Adaptador(getContext(),Datos,datosImg));
+        lista=(ListView)view.findViewById(R.id.lvLista);
+        lista.setAdapter(new Adaptador(getContext(),datos,datosImg));
 
         return view;
     }
 
-    private ArrayList<Object> getObject(){
+   /* private ArrayList<Object> getObject(){
         objects.add(getVerticalData().get(0));
         objects.add(getHorizontalData().get(0));
         return objects;
@@ -97,6 +100,6 @@ public class InfoFragment extends Fragment {
        singleHorizontals.add(new singleHorizontal(R.drawable.face,"FACEBOOK","\"Cada día se utilizan 4.7 billones de minutos en Facebook."));
        singleHorizontals.add(new singleHorizontal(R.drawable.user,"¿MAS DE LA MITAD DE USUAROS DE FACEBOOK EN MEXICO SON MUJERES?","En México las mujeres casi duplican a los hombres en numero de usuarios en las redes sociales (62.3%)de los usuarios mexicanos son mujeres frente a un 37.5 % que son usuarios hombres"));
        return  singleHorizontals;
-    }
+    }*/
 
 }
